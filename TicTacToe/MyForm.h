@@ -309,7 +309,7 @@ namespace Project8 {
 		}
 #pragma endregion
 		String^ currentPlayerSymbolski = "X";
-		int counter;
+		int moveCount = 0;
 		bool isWinner() {
 			if (!(button1->Text == "" && button2->Text == "" && button3->Text == "") && button1->Text == button2->Text && button1->Text == button3->Text)
 				return true;
@@ -327,7 +327,7 @@ namespace Project8 {
 				return true;
 			else if (!(button3->Text == "" && button5->Text == "" && button7->Text == "") && button3->Text == button5->Text && button3->Text == button7->Text)
 				return true;
-			else
+				
 			return false;
 		}
 private: System::Void ButtonClick(System::Object^ sender, System::EventArgs^ e) {
@@ -336,9 +336,33 @@ private: System::Void ButtonClick(System::Object^ sender, System::EventArgs^ e) 
 	label2->Focus();
 	b->Text = currentPlayerSymbolski;
 	b->Enabled = false;
-	counter++;
+	moveCount++;
 	bool hey = isWinner();
+	if (moveCount == 9 && hey == false) {
+		MessageBox::Show("It was a Draw!", "Draw", MessageBoxButtons::OK);
+		moveCount = 0;
+		currentPlayerSymbolski = "O";
+		button1->Enabled = true;
+		button2->Enabled = true;
+		button3->Enabled = true;
+		button4->Enabled = true;
+		button5->Enabled = true;
+		button6->Enabled = true;
+		button7->Enabled = true;
+		button8->Enabled = true;
+		button9->Enabled = true;
+		button1->Text = "";
+		button2->Text = "";
+		button3->Text = "";
+		button4->Text = "";
+		button5->Text = "";
+		button6->Text = "";
+		button7->Text = "";
+		button8->Text = "";
+		button9->Text = "";
+	}
 	if (hey) {
+		moveCount = 0;
 		button1->Enabled = false;
 		button2->Enabled = false;
 		button3->Enabled = false;
@@ -349,6 +373,7 @@ private: System::Void ButtonClick(System::Object^ sender, System::EventArgs^ e) 
 		button8->Enabled = false;
 		button9->Enabled = false;
 		if (MessageBox::Show("Player " + currentPlayerSymbolski + " wins!\n\n Try Again?", "WINNER", MessageBoxButtons::YesNo) == Windows::Forms::DialogResult::Yes) {
+			currentPlayerSymbolski = "O";
 			button1->Enabled = true;
 			button2->Enabled = true;
 			button3->Enabled = true;
