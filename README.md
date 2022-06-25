@@ -1,4 +1,5 @@
 # Tic-Tac-Toe
-a simple tic tac toe game
-I still am working to add other features
-I can't seem to make draw work
+
+Welcome! This is a simple tic tac toe game made with C++ </br>
+
+This game features a reset button and only supports 2 player mode
